@@ -1,15 +1,130 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { ArrowRight, ShieldCheck, Truck, Sparkles, Building2, ShoppingBag } from 'lucide-react';
+import {
+  ArrowRight,
+  ShieldCheck,
+  Truck,
+  Sparkles,
+  Building2,
+  ShoppingBag,
+  Award,
+  HelpCircle,
+  Package,
+} from 'lucide-react';
 import { HERO_GROCERY_IMG, WHOLESALE_WAREHOUSE_IMG } from '../../data/mockData';
 
 export const HeroBanner: React.FC = () => {
-  const { role, setRole, setActiveTab, setSelectedCategory } = useApp();
+  const {
+    role,
+    setRole,
+    setActiveTab,
+    setSelectedCategory,
+    setIsAiAssistantOpen,
+    language,
+  } = useApp();
 
   const isWholesale = role === 'wholesale';
 
   return (
     <div className="space-y-6">
+      {/* Interactive Concierge / Assistant Greeting Bar */}
+      <div className="bg-white rounded-2xl border border-neutral-200 p-4 sm:p-5 shadow-2xs">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-emerald-800 text-white flex items-center justify-center font-bold text-xs">
+              <Sparkles className="w-4 h-4 text-emerald-300" />
+            </div>
+            <div>
+              <h2 className="font-bold text-neutral-900 text-sm">
+                {language === 'ne'
+                  ? 'नमस्ते! आज हामी तपाईंलाई कसरी सहयोग गर्न सक्छौं?'
+                  : 'Namaste! How can we help you today?'}
+              </h2>
+              <span className="text-[11px] text-neutral-500">
+                Choose what you would like to do across retail, wholesale, and fleet services:
+              </span>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsAiAssistantOpen(true)}
+            className="text-xs font-semibold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
+          >
+            <span>Ask MartSaathi AI</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* 4 Quick Pathway Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <button
+            onClick={() => {
+              setRole('retail');
+              setSelectedCategory('rice-grains');
+              setActiveTab('categories');
+            }}
+            className="p-3 rounded-xl border border-neutral-200 hover:border-emerald-700 bg-neutral-50/60 hover:bg-emerald-50/50 text-left transition-all cursor-pointer group"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <ShoppingBag className="w-4 h-4 text-emerald-700" />
+              <span className="font-bold text-xs text-neutral-900 group-hover:text-emerald-900">
+                Shop Household Groceries
+              </span>
+            </div>
+            <p className="text-[11px] text-neutral-500 line-clamp-1">
+              Basmati rice, pure ghee, mustard oil & daily staples
+            </p>
+          </button>
+
+          <button
+            onClick={() => {
+              setRole('wholesale');
+              setActiveTab('wholesale-quick');
+            }}
+            className="p-3 rounded-xl border border-neutral-200 hover:border-emerald-700 bg-neutral-50/60 hover:bg-emerald-50/50 text-left transition-all cursor-pointer group"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <Building2 className="w-4 h-4 text-emerald-700" />
+              <span className="font-bold text-xs text-neutral-900 group-hover:text-emerald-900">
+                Order Kirana Bulk Cartons
+              </span>
+            </div>
+            <p className="text-[11px] text-neutral-500 line-clamp-1">
+              Master cartons, SKU spreadsheet & 30-day credit
+            </p>
+          </button>
+
+          <button
+            onClick={() => setIsAiAssistantOpen(true)}
+            className="p-3 rounded-xl border border-neutral-200 hover:border-emerald-700 bg-neutral-50/60 hover:bg-emerald-50/50 text-left transition-all cursor-pointer group"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <Sparkles className="w-4 h-4 text-emerald-700" />
+              <span className="font-bold text-xs text-neutral-900 group-hover:text-emerald-900">
+                Ask MartSaathi AI Advisor
+              </span>
+            </div>
+            <p className="text-[11px] text-neutral-500 line-clamp-1">
+              Recipe ingredients, price checks & draft bulk orders
+            </p>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('rewards')}
+            className="p-3 rounded-xl border border-neutral-200 hover:border-emerald-700 bg-neutral-50/60 hover:bg-emerald-50/50 text-left transition-all cursor-pointer group"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <Award className="w-4 h-4 text-emerald-700" />
+              <span className="font-bold text-xs text-neutral-900 group-hover:text-emerald-900">
+                Redeem My Mart Rewards
+              </span>
+            </div>
+            <p className="text-[11px] text-neutral-500 line-clamp-1">
+              Loyalty points, tier progress & discount vouchers
+            </p>
+          </button>
+        </div>
+      </div>
+
       {/* Split Hero Banner */}
       <div className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-800 shadow-md">
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[440px]">
