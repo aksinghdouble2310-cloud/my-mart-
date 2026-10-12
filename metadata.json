@@ -1,0 +1,6 @@
+{
+  "name": "My Mart Nepal - B2C Grocery & B2B Wholesale Platform",
+  "description": "Next-generation grocery & wholesale commerce ecosystem for My Mart Industries Pvt. Ltd. Nepal, supporting retail shoppers, B2B bulk kirana orders, delivery fleet, and enterprise operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
